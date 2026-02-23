@@ -2,6 +2,7 @@
 ---
 
 This log documents the daily progress of tasks completed during the Quantity Measurement App development, identifying work done on each date with thematic headings and detailed summaries.
+
 ---
 
 Folder Structure The repository is organized in a modular way following the standard Maven directory structure.
@@ -36,4 +37,5 @@ QuantityMeasurementApp/
 
 [Browse UC3 Implementation](https://github.com/Shashwatdwivedi30/QuantityMeasurementApp/tree/feature/UC3-GenericQuantity)<br>
 [Browse UC4 Implementation](https://github.com/Shashwatdwivedi30/QuantityMeasurementApp/tree/feature/UC4-ExtendedUnitSupport)
+
 
