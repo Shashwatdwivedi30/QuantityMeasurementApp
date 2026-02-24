@@ -2,52 +2,40 @@ package com.bridgelabz.quantitymeasurement;
 
 public class QuantityMeasurementApp {
 
+    public static double demonstrateLengthConversion(double value, LengthUnit from, LengthUnit to) {
+        double result = QuantityLength.convert(value, from, to);
+        System.out.println("Converted: " + result);
+        return result;
+    }
+
+    public static QuantityLength demonstrateLengthConversion(QuantityLength q, LengthUnit to) {
+        QuantityLength result = q.convertTo(to);
+        System.out.println("Converted: " + result);
+        return result;
+    }
+
+    public static void demonstrateLengthEquality(QuantityLength a, QuantityLength b) {
+        System.out.println(a + " == " + b + " ? " + a.equals(b));
+    }
+
+    public static void demonstrateLengthComparison(double v1, LengthUnit u1, double v2, LengthUnit u2) {
+        QuantityLength q1 = new QuantityLength(v1, u1);
+        QuantityLength q2 = new QuantityLength(v2, u2);
+
+        demonstrateLengthEquality(q1, q2);
+    }
+
     public static void main(String[] args) {
-        Quantity feet1 = new Quantity(1.0, LengthUnit.FEET);
-        Quantity feet2 = new Quantity(1.0, LengthUnit.FEET);
 
-        System.out.println("Input: Quantity(1.0, \"feet\") and Quantity(1.0, \"feet\")");
-        if (feet1.equals(feet2)) {
-            System.out.println("Output: Equal (true)");
-        } else {
-            System.out.println("Output: Not Equal (false)");
-        }
+        demonstrateLengthConversion(1.0, LengthUnit.FEET, LengthUnit.INCHES);
+        demonstrateLengthConversion(3.0, LengthUnit.YARDS, LengthUnit.FEET);
+        demonstrateLengthConversion(36.0, LengthUnit.INCHES, LengthUnit.YARDS);
+        demonstrateLengthConversion(1.0, LengthUnit.CENTIMETERS, LengthUnit.INCHES);
+        demonstrateLengthConversion(0.0, LengthUnit.FEET, LengthUnit.INCHES);
 
-        Quantity inch1 = new Quantity(1.0, LengthUnit.INCH);
-        Quantity inch2 = new Quantity(1.0, LengthUnit.INCH);
+        QuantityLength yardObj = new QuantityLength(1.0, LengthUnit.YARDS);
+        demonstrateLengthConversion(yardObj, LengthUnit.INCHES);
 
-        System.out.println("Input: Quantity(1.0, \"inch\") and Quantity(1.0, \"inch\")");
-        if (inch1.equals(inch2)) {
-            System.out.println("Output: Equal (true)");
-        } else {
-            System.out.println("Output: Not Equal (false)");
-        }
-
-        Quantity feet3 = new Quantity(1.0, LengthUnit.FEET);
-        Quantity inch3 = new Quantity(12.0, LengthUnit.INCH);
-        System.out.println("Input: Quantity(1.0, \"feet\") and Quantity(12.0, \"inch\")");
-        if (feet3.equals(inch3)) {
-            System.out.println("Output: Equal (true)");
-        } else {
-            System.out.println("Output: Not Equal (false)");
-        }
-
-        Quantity yard1 = new Quantity(1.0, LengthUnit.YARD);
-        Quantity feet4 = new Quantity(3.0, LengthUnit.FEET);
-        System.out.println("Input: Quantity(1.0, YARDS) and Quantity(3.0, FEET)");
-        if (yard1.equals(feet4)) {
-            System.out.println("Output: Equal (true)");
-        } else {
-            System.out.println("Output: Not Equal (false)");
-        }
-
-        Quantity cm1 = new Quantity(1.0, LengthUnit.CENTIMETER);
-        Quantity inch4 = new Quantity(0.393701, LengthUnit.INCH);
-        System.out.println("Input: Quantity(1.0, CENTIMETERS) and Quantity(0.393701, INCHES)");
-        if (cm1.equals(inch4)) {
-            System.out.println("Output: Equal (true)");
-        } else {
-            System.out.println("Output: Not Equal (false)");
-        }
+        demonstrateLengthComparison(3.0, LengthUnit.FEET, 1.0, LengthUnit.YARDS);
     }
 }
