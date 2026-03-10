@@ -7,11 +7,11 @@ public class QuantityMeasurementApp {
 
         // Equality checks
         System.out.println("\nEquality Tests:");
-        demonstrateLengthComparison(1.0, LengthUnit.FEET, 1.0, LengthUnit.FEET);
-        demonstrateLengthComparison(1.0, LengthUnit.INCH, 1.0, LengthUnit.INCH);
-        demonstrateLengthComparison(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCH);
-        demonstrateLengthComparison(1.0, LengthUnit.YARD, 3.0, LengthUnit.FEET);
-        demonstrateLengthComparison(1.0, LengthUnit.CENTIMETER, 0.393701, LengthUnit.INCH);
+        demonstrateComparison(1.0, LengthUnit.FEET, 1.0, LengthUnit.FEET);
+        demonstrateComparison(1.0, LengthUnit.INCH, 1.0, LengthUnit.INCH);
+        demonstrateComparison(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCH);
+        demonstrateComparison(1.0, LengthUnit.YARD, 3.0, LengthUnit.FEET);
+        demonstrateComparison(1.0, LengthUnit.CENTIMETER, 0.393701, LengthUnit.INCH);
 
         // Conversion Examples (UC5)
         System.out.println("\n--- UC5: Unit-to-Unit Conversion Examples ---");
@@ -22,11 +22,11 @@ public class QuantityMeasurementApp {
         demonstrateLengthConversion(0.0, LengthUnit.FEET, LengthUnit.INCH);
 
         System.out.println("\n--- Overloaded convert method ---");
-        Quantity lengthInYards = new Quantity(3.0, LengthUnit.YARD);
-        demonstrateLengthConversion(lengthInYards, LengthUnit.INCH);
+        Quantity<LengthUnit> lengthInYards = new Quantity<>(3.0, LengthUnit.YARD);
+        demonstrateConversion(lengthInYards, LengthUnit.INCH);
     }
 
-    public static void demonstrateLengthEquality(Quantity q1, Quantity q2) {
+    public static void demonstrateEquality(Quantity<?> q1, Quantity<?> q2) {
         System.out.println("Input: " + q1 + " and " + q2);
         if (q1.equals(q2)) {
             System.out.println("Output: Equal (true)");
@@ -35,15 +35,15 @@ public class QuantityMeasurementApp {
         }
     }
 
-    public static void demonstrateLengthComparison(double value1, LengthUnit unit1, double value2, LengthUnit unit2) {
-        Quantity q1 = new Quantity(value1, unit1);
-        Quantity q2 = new Quantity(value2, unit2);
-        demonstrateLengthEquality(q1, q2);
+    public static <U extends IMeasurable> void demonstrateComparison(double value1, U unit1, double value2, U unit2) {
+        Quantity<U> q1 = new Quantity<>(value1, unit1);
+        Quantity<U> q2 = new Quantity<>(value2, unit2);
+        demonstrateEquality(q1, q2);
     }
 
-    public static void demonstrateLengthConversion(double value, LengthUnit fromUnit, LengthUnit toUnit) {
-        Quantity source = new Quantity(value, fromUnit);
-        Quantity result = source.convertTo(toUnit);
+    public static <U extends IMeasurable> void demonstrateLengthConversion(double value, U fromUnit, U toUnit) {
+        Quantity<U> source = new Quantity<>(value, fromUnit);
+        Quantity<U> result = source.convertTo(toUnit);
 
         System.out.println("Input: convert(" + value + ", " + fromUnit + ", " + toUnit + ")");
         System.out.println("Output: " + ((result.getValue() == 0.0) ? "0.0"
@@ -51,10 +51,11 @@ public class QuantityMeasurementApp {
                         .replace("~1.000000", "1.0").replace("000", "")));
     }
 
-    public static void demonstrateLengthConversion(Quantity quantity, LengthUnit targetUnit) {
-        Quantity result = quantity.convertTo(targetUnit);
+    public static <U extends IMeasurable> void demonstrateConversion(Quantity<U> quantity, U targetUnit) {
+        Quantity<U> result = quantity.convertTo(targetUnit);
         System.out.println(
-                "Input: convert(" + quantity.getValue() + " " + quantity.getUnit() + " to " + targetUnit + ")");
+                "Input: convert(" + quantity.getValue() + " " + quantity.getUnit().getUnitName() + " to "
+                        + targetUnit.getUnitName() + ")");
         System.out.println("Output: " + result.getValue());
     }
 }
