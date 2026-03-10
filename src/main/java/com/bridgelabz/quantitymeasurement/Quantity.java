@@ -1,11 +1,11 @@
 package com.bridgelabz.quantitymeasurement;
 
-public final class QuantityLength {
+public final class Quantity {
 
     private final double value;
     private final LengthUnit unit;
 
-    public QuantityLength(double value, LengthUnit unit) {
+    public Quantity(double value, LengthUnit unit) {
         if (!Double.isFinite(value)) {
             throw new IllegalArgumentException("Value must be a finite number.");
         }
@@ -23,9 +23,9 @@ public final class QuantityLength {
         return unit;
     }
 
-    public QuantityLength convertTo(LengthUnit targetUnit) {
+    public Quantity convertTo(LengthUnit targetUnit) {
         double converted = convert(value, unit, targetUnit);
-        return new QuantityLength(converted, targetUnit);
+        return new Quantity(converted, targetUnit);
     }
 
     public static double convert(double value, LengthUnit source, LengthUnit target) {
@@ -47,9 +47,9 @@ public final class QuantityLength {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof QuantityLength)) return false;
+        if (!(obj instanceof Quantity)) return false;
 
-        QuantityLength other = (QuantityLength) obj;
+        Quantity other = (Quantity) obj;
 
         double thisInFeet = convert(this.value, this.unit, LengthUnit.FEET);
         double otherInFeet = convert(other.value, other.unit, LengthUnit.FEET);
