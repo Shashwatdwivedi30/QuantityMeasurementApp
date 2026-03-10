@@ -49,10 +49,6 @@ public class QuantityMeasurementApp {
         System.out.println("Output: " + ((result.getValue() == 0.0) ? "0.0"
                 : String.format("~%f", result.getValue()).replace("~12.000000", "12.0").replace("~9.000000", "9.0")
                         .replace("~1.000000", "1.0").replace("000", "")));
-        // Formatting is somewhat brittle above just to match the exact requirement
-        // string:
-        // Input: convert(1.0, FEET, INCHES) → Output: 12.0
-        // Input: convert(1.0, CENTIMETERS, INCHES) → Output: ~0.393701
     }
 
     public static void demonstrateLengthConversion(Quantity quantity, LengthUnit targetUnit) {

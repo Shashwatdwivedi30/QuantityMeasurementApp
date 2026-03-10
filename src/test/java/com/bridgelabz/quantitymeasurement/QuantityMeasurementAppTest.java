@@ -54,9 +54,6 @@ public class QuantityMeasurementAppTest {
 
     @Test
     public void testEquality_NonNumericInput() {
-        // Technically strict type check in Java prevents passing non-Quantity to
-        // `equals` if we used a specific type,
-        // but `equals` takes Object.
         Quantity feet = new Quantity(1.0, LengthUnit.FEET);
         Object nonQuantity = new Object();
         assertFalse(feet.equals(nonQuantity));
