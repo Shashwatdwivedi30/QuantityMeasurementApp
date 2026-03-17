@@ -262,10 +262,9 @@ public class QuantityMeasurementApp {
     }
 
     private static void initialize() {
-        IQuantityMeasurementRepository repository = RepositoryFactory.createRepository();
+        IQuantityMeasurementRepository repository = QuantityMeasurementCacheRepository.getInstance();
         IQuantityMeasurementService service = new QuantityMeasurementServiceImpl(repository);
         controller = new QuantityMeasurementController(service);
-        System.out.println("Repository in use: " + repository.getClass().getSimpleName());
     }
 
     private static void demonstrateEqualityDTO(QuantityDTO q1, QuantityDTO q2) {

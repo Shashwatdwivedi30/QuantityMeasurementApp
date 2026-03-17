@@ -26,7 +26,6 @@ public class QuantityMeasurementEntity implements Serializable {
     private Double scalarResult;
     private boolean error;
     private String errorMessage;
-    private String createdAt;
 
     // Constructor for unary operations (e.g. conversion)
     public QuantityMeasurementEntity(QuantityModel<?> operand, OperationType operationType,
@@ -95,14 +94,6 @@ public class QuantityMeasurementEntity implements Serializable {
         return errorMessage;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
     @Override
     public String toString() {
         if (error) {
@@ -122,9 +113,6 @@ public class QuantityMeasurementEntity implements Serializable {
         }
         if (scalarResult != null) {
             builder.append(", scalarResult=").append(scalarResult);
-        }
-        if (createdAt != null) {
-            builder.append(", createdAt='").append(createdAt).append('\'');
         }
         builder.append('}');
         return builder.toString();
