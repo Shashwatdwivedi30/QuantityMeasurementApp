@@ -29,7 +29,7 @@ public enum TemperatureUnit implements IMeasurable {
 
     @Override
     public double getConversionFactor() {
-        return 1.0; 
+        return 1.0; // Dummy value, non-linear conversion handles mapping natively
     }
 
     @Override

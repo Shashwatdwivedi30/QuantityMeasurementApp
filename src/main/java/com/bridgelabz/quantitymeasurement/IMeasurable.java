@@ -14,6 +14,8 @@ public interface IMeasurable {
     }
 
     default void validateOperationSupport(String operation) {
+        // Subclasses can override to validate specific operations.
+        // Default allows all operations.
     }
 
     double getConversionFactor();
