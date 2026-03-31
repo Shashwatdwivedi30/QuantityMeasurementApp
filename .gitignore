@@ -1,7 +1,0 @@
-# Allow only these
-!src/
-!pom.xml
-!.gitignore
-
-# Allow files inside src
-!src/**
